@@ -1,0 +1,13 @@
+import requests
+from bs4 import BeautifulSoup
+
+url = "https://www.runoob.com/python3/"
+
+# 发送请求并获取页面内容
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
+
+# 直接查找 class 为 "design" 的 div 元素下的所有 a 标签，并提取 title 属性
+for link in soup.select(".design a"):
+    title = link.get("title")
+    print(title)
